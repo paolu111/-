@@ -1,0 +1,465 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link type="text/css" rel="stylesheet" href="../css/business_management/business.css">
+
+  <title>企业分布图</title>
+  <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+
+
+
+
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=rEU7BdGnB0kKyIjUiONnUHlw&s=1"></script>
+
+  <style>
+    .lefts_div {
+      float: right;
+      width: 100%;
+      background-color: rgba(133, 185, 241, 1);
+      height: 100%;
+      color: black;
+      text-align: center;
+      margin-top: 0px;
+      display: inline-block;
+      margin-left: -13px;
+    }
+
+    .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
+      color: black !important;
+    }
+
+    .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
+      color: black !important;
+    }
+
+    .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
+      color: rgb(0, 0, 0) !important;
+    }
+
+    .lefts_div .layui-breadcrumb span {
+      color: rgba(42, 130, 228, 1) !important;
+      font-size: 15px;
+    }
+    .new_select {
+      height: 30px;
+      border-radius: 3px;
+      border: none;
+      width: 210px;
+    }
+
+    .lefts_div .new_input, .lefts_div .new_select {
+      width: 95%;
+      margin: 5px 0px;
+    }
+    .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3 {
+      width: 21% !important;
+      padding-right: 0px !important;
+    }
+    .table-div, tr > td {
+      border: 1px solid rgba(210, 207, 207, 1);
+    }
+
+    .col-xs-3 {
+
+      float: left;
+    }
+
+    .col-xs-9 {
+      position: relative;
+      overflow: hidden;
+    }
+
+    #mapTitle {
+      position: absolute;
+      top: 50px;
+      left: 45%;
+      background: red;
+      color: white;
+      padding: 5px;
+
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+<header>
+<img class="logo_img" src="https://img.xiaopiu.com/userImages/img2664166613f66c8.png">
+全国产品防伪溯源验证公共平台大数据监管中心
+</header>
+<div class="menu_div">
+  <ul class="layui-nav" lay-filter="">
+    <li class="layui-nav-item">
+      <a href="javascript:;">企业管理</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="/business_management/enterprise.html">企业分布图</a></dd>
+        <dd><a href="/business_management/breeding.html">种养殖企业</a></dd>
+        <dd><a href="/business_management/manufacturing.html">生产企业</a></dd>
+        <dd><a href="/business_management/schoolcanteen.html">学校单位食堂</a></dd>
+        <dd><a href="/business_management/circulating.html">流通企业</a></dd>
+        <dd><a href="/business_management/catering.html">餐饮企业</a></dd>
+        <dd><a href="/business_management/threesmall.html">三小企业</a></dd>
+        <dd><a href="/business_management/otherbusiness.html">其它企业</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">产品管理</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="../../promgt/induspro.html">工业产品</a></dd>
+        <dd><a href="../../promgt/housepro.html">农产品</a></dd>
+        <dd><a href="../../promgt/foodpro.html">食品</a></dd>
+        <dd><a href="../../promgt/cospro.html">化妆品</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">防伪溯源监管</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="../../zfscsupervise/prosts.html">防伪产品统计</a></dd>
+        <dd><a href="../../zfscsupervise/sdypro.html">假冒伪劣产品统计</a></dd>
+        <dd><a href="../../zfscsupervise/reltmdtshow.html">实时数据展示</a></dd>
+        <dd><a href="../../zfscsupervise/reltmdtshow-look.html">实时数据展示查看</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">执法检查</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="/examination/planaudit.html">检查计划</a></dd>
+        <dd><a href="/examination/enforcement.html">移动执法</a></dd>
+        <dd><a href="/examination/checkresult.html">检查结果</a></dd>
+        <dd><a href="/examination/expirationnotice.html">证件到期提示</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">企业自查</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="../../etpcompre/comprePlan.html">自查计划</a></dd>
+        <dd><a href="../../etpcompre/compreInfo.html">自查信息</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">社会监督</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="/social_supervision/eventsreport.html">事件举报(假冒伪劣)</a></dd>
+        <dd><a href="/social_supervision/productreport.html">产品举报(假冒伪劣)</a></dd>
+        <dd><a href="/social_supervision/complaint.html">投诉处理</a></dd>
+
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">黑名单</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="/blacklist/blacklist.html">黑名单管理</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">风险预警</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="/risk/risk_1.html">风险事件分布</a></dd>
+        <dd><a href="/risk/risk_2.html">假冒伪劣事件分布</a></dd>
+        <dd><a href="/risk/risk_3.html">预警信息发布</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">监管业务</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="/supervise/self_inspection.html">自查模板</a></dd>
+        <dd><a href="/supervise/regulation.html">监管模板</a></dd>
+        <dd><a href="/supervise/type.html">执法类型</a></dd>
+      </dl>
+    </li>
+    <li class="layui-nav-item">
+      <a href="javascript:;">用户信息</a>
+      <dl class="layui-nav-child"> <!-- 二级菜单 -->
+        <dd><a href="/user/info.html">个人信息修改</a></dd>
+        <dd><a href="/user/pd.html">密码修改</a></dd>
+      </dl>
+    </li>
+  </ul>
+</div>
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-xs-3 col-sm-3">
+      <table class="table-bordered table-div" cellpadding="0" width="100%">
+        <tr>
+          <td height="38px">
+            <span class="typeEnterprise notice">种养殖企业</span>
+            <span class="counts notice">110家</span>
+          </td>
+        </tr>
+        <tr>
+          <td height="38px">
+            <span class="typeEnterprise ">生产企业</span>
+            <span class="counts ">200家</span>
+          </td>
+        </tr>
+        <tr>
+          <td height="38px">
+            <span class="typeEnterprise notice">流通企业</span>
+            <span class="counts notice">198家</span>
+          </td>
+        </tr>
+        <tr>
+          <td height="38px">
+            <span class="typeEnterprise ">餐饮企业</span>
+            <span class="counts ">560家</span>
+          </td>
+        </tr>
+        <tr>
+          <td height="38px">
+            <span class="typeEnterprise notice">三小企业</span>
+            <span class="counts notice">301家</span>
+          </td>
+        </tr>
+        <tr>
+          <td height="38px">
+            <span class="typeEnterprise ">学校单位食堂</span>
+            <span class="counts ">230家</span>
+          </td>
+        </tr>
+        <tr>
+          <td height="38px">
+            <span class="typeEnterprise notice">其它企业</span>
+            <span class="counts notice">199家</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="lefts_div">
+              <select name="" id="" class="new_select" style="margin-top: 15px">
+                <option value="">省</option>
+                <option value="">北京</option>
+                <option value="">广东</option>
+                <option value="">山东</option>
+                <option value="">江苏</option>
+                <option value="">河南</option>
+                <option value="">河北</option>
+                <option value="">浙江</option>
+                <option value="">陕西</option>
+              </select>
+              <select name="" id="" class="new_select">
+                <option value="">市</option>
+                <option value="">济南</option>
+                <option value="">南京</option>
+                <option value="">上海</option>
+                <option value="">石家庄</option>
+
+              </select>
+              <select name="" id="" class="new_select">
+                <option value="">企业类别</option>
+                <option value="">种养殖企业</option>
+                <option value="">生产企业</option>
+                <option value="">学校单位食堂</option>
+                <option value="">流通企业</option>
+                <option value="">餐饮企业</option>
+                <option value="">三小企业</option>
+                <option value="">其它企业</option>
+              </select>
+              <button style="margin: 5px 2px" type="button" class="btn  btn-reg">确认</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td height="88px " class="company">
+            <span class="titles">1.昆明风尚农产品开发有限公司</span>
+            <p class="">云南省昆明市晋宁区昆明街道办事处东凤路2005号</p>
+          </td>
+        </tr>
+        <tr>
+          <td height="88px" class="company" width="100%">
+            <span class="titles">2.上海龙顺农产品有限公司</span>
+            <p>上海上海滩666号888888</p>
+          </td>
+        </tr>
+        <tr>
+          <td height="88px" class="company">
+            <span class="titles">3.长沙马王堆农产品股份有限公司</span>
+            <p>湖南省长沙县黄兴镇打卦岭村山圫组长</p>
+          </td>
+        </tr>
+        <tr>
+          <td height="88px" class="company">
+            <span class="titles">4.厦门夏商农产品集团有限公司</span>
+            <p>厦门市湖里区禾山路2-8号民兴商城8楼</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span id="page"></span>
+          </td>
+        </tr>
+
+      </table>
+
+    </div> <!--左侧-->
+    <div class="col-xs-9 col-sm-9">
+      <div id="mapTitle">
+        企业管理/企业分布图
+      </div>
+      <div id="baidumap" style="width: 100%; height: 798px"></div>
+
+    </div><!--右侧map-->
+
+  </div>
+</div>
+<script src="/static/layui/layui.all.js"></script>
+<script src="/js/left.js"></script>
+
+
+<script type="text/javascript">
+  // 百度地图API功能
+  var map = new BMap.Map("baidumap");
+  map.centerAndZoom(new BMap.Point(104.181519, 30.702068), 6);
+  map.addControl(new BMap.MapTypeControl());
+  map.enableScrollWheelZoom(true);
+
+
+  var point = new BMap.Point(104.073589, 30.578785);
+
+  map.centerAndZoom(point, 5);
+
+
+                     //启用滚轮放大缩小
+  if (document.createElement('canvas').getContext) {  // 判断当前浏览器是否支持绘制海量点
+      // 添加海量点数据
+
+
+    var point = new BMap.Point(104.073589,30.578785);
+
+
+
+    var points=[];
+    points.push(new BMap.Point(102.601805, 33.215298));
+    points.push(new BMap.Point(123.280367, 42.580859));
+    points.push(new BMap.Point(118.129124, 26.816346));
+    points.push(new BMap.Point(113.566594, 26.154096));
+    points.push(new BMap.Point(102.233859, 28.519842));
+    points.push(new BMap.Point(96.346724, 35.353075));
+    points.push(new BMap.Point(89.50293, 31.906575));
+    points.push(new BMap.Point(89.061395, 39.915457));;
+    points.push(new BMap.Point(92.152141, 42.743801));
+    points.push(new BMap.Point(117.466821, 43.819078));
+    points.push(new BMap.Point(119.895264, 41.924793));
+    points.push(new BMap.Point(118.570659, 29.683217));
+    points.push(new BMap.Point(113.05147, 27.73695));
+    points.push(new BMap.Point(107.164335, 24.952462));
+    points.push(new BMap.Point(115.185556, 24.279686));
+    points.push(new BMap.Point(109.960724, 23.671087));
+    points.push(new BMap.Point(111.506097, 24.751014));
+    points.push(new BMap.Point(113.93454, 32.967507));
+    points.push(new BMap.Point(110.770205, 30.833147));
+    points.push(new BMap.Point(110.843794, 26.353176));
+    points.push(new BMap.Point(101.718735, 29.42584));
+    points.push(new BMap.Point(99.43747, 35.05105));
+    points.push(new BMap.Point(101.424378, 38.484016));
+    points.push(new BMap.Point(108.930475, 37.552522));
+    points.push(new BMap.Point(113.640183, 32.407407));
+    points.push(new BMap.Point(115.406324, 26.551909));
+    points.push(new BMap.Point(117.908356, 25.621542));
+    points.push(new BMap.Point(110.32867, 28.194339));
+    points.push(new BMap.Point(101.645146, 27.933214));
+    points.push(new BMap.Point(109.37201, 25.621542));
+    points.push(new BMap.Point(115.995037, 34.199376));
+    points.push(new BMap.Point(111.285329, 31.339832));
+    points.push(new BMap.Point(117.098875, 27.867832));
+    points.push(new BMap.Point(115.77427, 26.220495));
+    points.push(new BMap.Point(114.302486, 25.821534));
+    points.push(new BMap.Point(114.596843, 30.960074));
+    points.push(new BMap.Point(117.098875, 26.551909));
+    points.push(new BMap.Point(117.687589, 25.220541));
+    points.push(new BMap.Point(114.445577, 25.254009));
+    points.push(new BMap.Point(113.341739, 25.287468));
+    points.push(new BMap.Point(107.013069, 25.821534));
+    points.push(new BMap.Point(105.982821, 24.212207));
+    points.push(new BMap.Point(108.484853, 28.25952));
+    points.push(new BMap.Point(102.965664, 28.324661));
+    points.push(new BMap.Point(101.898621, 34.808616));
+    points.push(new BMap.Point(95.500449, 34.352107));
+    points.push(new BMap.Point(93.072005, 35.623927));;
+    points.push(new BMap.Point(94.249432, 33.246223));
+    points.push(new BMap.Point(116.326189, 34.595893));
+    points.push(new BMap.Point(115.811064, 29.522434));
+    points.push(new BMap.Point(113.897745, 26.054428));
+    points.push(new BMap.Point(113.014675, 32.750112));
+    points.push(new BMap.Point(111.69007, 26.054428));;;
+    points.push(new BMap.Point(109.703162, 24.110923));
+    points.push(new BMap.Point(112.720319, 36.816513));
+    points.push(new BMap.Point(104.993454, 36.816513));
+    points.push(new BMap.Point(118.01874, 25.72158));
+    points.push(new BMap.Point(113.45621, 25.454622));
+    points.push(new BMap.Point(116.841313, 26.584998));
+    points.push(new BMap.Point(116.914902, 25.187064));
+    points.push(new BMap.Point(119.490524, 33.184363));
+    points.push(new BMap.Point(118.239508, 31.371409));
+    points.push(new BMap.Point(117.797972, 28.747091));
+    points.push(new BMap.Point(116.914902, 25.72158));
+    points.push(new BMap.Point(115.516708, 26.717255));
+    points.push(new BMap.Point(113.824156, 29.458048));
+    points.push(new BMap.Point(110.807, 28.161734));
+    points.push(new BMap.Point(110.144697, 30.737841));
+    points.push(new BMap.Point(111.837248, 33.431537))
+    points.push(new BMap.Point(111.542892, 36.75732));
+    points.push(new BMap.Point(114.486459, 36.28212));
+    points.push(new BMap.Point(109.408805, 34.229945));
+    points.push(new BMap.Point(112.646729, 37.464583))
+    points.push(new BMap.Point(119.711291, 28.292096));
+    points.push(new BMap.Point(116.17901, 26.1873));
+    points.push(new BMap.Point(108.672913, 26.518811));
+    points.push(new BMap.Point(110.954178, 30.737841));
+    points.push(new BMap.Point(112.205194, 34.960222))
+    points.push(new BMap.Point(120.005648, 43.095365));
+    points.push(new BMap.Point(125.892783, 44.005283));
+    points.push(new BMap.Point(126.996621, 46.398014))
+    points.push(new BMap.Point(123.169983, 44.639244));
+    points.push(new BMap.Point(118.460275, 43.095365));
+    points.push(new BMap.Point(122.360502, 42.007177))
+    points.push(new BMap.Point(124.494588, 40.955723));
+    points.push(new BMap.Point(111.984427, 36.460665));
+    points.push(new BMap.Point(116.988491, 33.493219));
+    points.push(new BMap.Point(118.01874, 29.971972));
+    points.push(new BMap.Point(113.5298, 28.811928));
+    points.push(new BMap.Point(115.884654, 27.310486));
+    points.push(new BMap.Point(117.577205, 25.387789));
+    points.push(new BMap.Point(112.425962, 25.187064));
+    points.push(new BMap.Point(108.157789, 25.320918));
+    points.push(new BMap.Point(112.499551, 30.164006));
+    points.push(new BMap.Point(115.590297, 27.900528));
+    points.push(new BMap.Point(116.399778, 25.854833));
+    points.push(new BMap.Point(119.122578, 27.96589));
+    points.push(new BMap.Point(118.01874, 30.036025));
+    points.push(new BMap.Point(118.90181, 28.226935));
+    points.push(new BMap.Point(118.90181, 25.987934));
+    points.push(new BMap.Point(115.443118, 25.120081));
+    points.push(new BMap.Point(111.027767, 24.717407));
+    points.push(new BMap.Point(108.96727, 22.821047));
+    points.push(new BMap.Point(108.304967, 26.651146));
+    points.push(new BMap.Point(113.971335, 24.380835));
+    points.push(new BMap.Point(114.339281, 23.297745));
+    points.push(new BMap.Point(117.430026, 24.717407));
+
+    var myIcon = new BMap.Icon('/static/images/ico1.png',new BMap.Size(16,16));
+    for(var i=0;i<points.length;i++){
+      var maker=new BMap.Marker(points[i],{icon:myIcon});
+      map.addOverlay(maker);
+
+    }
+
+
+  /*  console.log(myIcon)
+    var options = {
+      size: 4,
+      shape: 0,
+      color: '#f7352e',
+      icon:myIcon
+    }
+    var pointCollection = new BMap.PointCollection(points, options);  // 初始化PointCollection
+
+    map.addOverlay(pointCollection);*/
+  }
+
+</script>
+
+</body>
+</html>
