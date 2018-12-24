@@ -17,7 +17,7 @@ def register_bp(app):
 
 
 def crete_app(set):
-    app = Flask(__name__, static_url_path='/static', static_folder='static')
+    app = Flask(__name__, static_url_path='/static', static_folder='paolu_static')
     app.config.from_object(set)
     # 指定session的保存位置
     # Session(app=app)
