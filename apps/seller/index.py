@@ -32,4 +32,3 @@ def info_com():
 def show_comp():
     buss = Business.query.all()
     return render_template("show_comp.html", buss=buss)
-
