@@ -6,7 +6,7 @@ base_dir = os.path.abspath(os.path.dirname(__file__))
 
 
 class DevBase(object):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(base_dir, 'test.db')
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:root@47.107.113.243:3306/paoluzu?charset=utf8'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DEBUG = True
 
