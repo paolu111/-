@@ -18,16 +18,6 @@ def login():
 @seller_log_bp.route("/info/", endpoint="info", methods=["GET", "POST"])
 def info_com():
     if request.method == "GET":
-        return render_template("info.html")
-    if request.method == "POST":
-        data = request.form
-        b1 = Business()
-        b1.name = data.get("name")
-        b1.email = data.get("email")
-        db.session.add(b1)
-        db.session.commit()
-        return "ok"
-    if request.method == "GET":
         form = Business_Form(request.form)
         return render_template("info.html", form=form, title="企业信息")
     if request.method == "POST":
