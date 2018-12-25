@@ -1,0 +1,181 @@
+html, body {
+  height: 100%;
+}
+
+.content {
+  position: absolute;
+  top: 135px;
+  bottom: 0px;
+  width: 100%;
+  min-width: 1200px;
+}
+
+.content > div:nth-child(2) > div {
+  padding-top: 0px;
+  margin-left: 5px;
+  margin-top: -12px;
+}
+
+.content .left_div {
+  padding-top: 5px;
+}
+
+.md > span > span > span:first-child {
+  height: 30px;
+  line-height: 30px;
+}
+
+
+
+.remove span, .add span {
+  display: inline-block;
+  width: 150px;
+}
+
+
+.b > button {
+  width: 40%;
+  min-width: 73px;
+  height: 34px;
+  border-radius: 34px;
+  outline: none;
+  border: none;
+  color: white;
+}
+
+.b > button:first-child {
+  margin-right: 20px;
+  background: rgba(128, 128, 128, 1);
+}
+
+.b > button:last-child {
+  background: rgba(233, 68, 68, 1);
+}
+
+table {
+  margin-top: 0px;
+}
+td input{
+  position:absolute ;
+  top:-100px;
+  left: -100px;
+}
+td label{
+  margin: 0;
+}
+td label:hover{
+  cursor: pointer;
+}
+td input+span{
+  height: 30px;
+  width: 30px;
+  background: url("/static/images/check_false.png");
+  background-size:100% ;
+  display: inline-block;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  margin: auto;
+  left: 0px;
+  right: 0px;
+}
+input:checked+span{
+  background: url("/static/images/check_true.png");
+  background-size: 100%;
+}
+table>a{
+  color: red;
+  cursor: pointer;
+}
+
+.btn-reg{
+  width:100px;
+  background-color: rgba(51, 119, 255, 1);
+  color:#fff;
+  border-radius: 25px!important;
+}
+.btn-other{
+  width:100px;
+  background-color: rgba(233, 68, 68, 1);!important;
+  color:#fff;
+  border-radius: 25px!important;
+}
+
+.btn-chooseAll{
+  width:100px;
+  background: #999!important;
+  color:#fff;
+  border-radius: 25px!important;
+}
+td>a{
+  font-size: small;
+}
+.anti-fake{
+   color: #4848ff
+ }
+.anti-fake-no{
+  color: #ff6666
+}
+.typeEnterprise{
+  float: left;
+  padding: 2px 8px;
+}
+.counts{
+  float: right;
+  padding: 2px 8px;
+}
+.notice{
+  font-size: 14px;
+  color: #ff6666;
+}
+.company {
+  background-color: rgba(133, 185, 241, 1)
+}
+.titles{
+  display: inline-block;
+  font-size: 15px;
+  color: white;
+  float: left;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 15px;
+  padding-right: 32px;
+}
+td>p{
+  display: inline-block;
+  float: left;
+  font-size: 11px;
+  font-weight: bold;
+  padding-left:25px !important;
+  padding-right:25px !important;
+  padding-top: 2px!important;
+  padding-bottom: 2px!important;
+
+}
+
+.btn{
+  padding: 7px 12px!important;
+  border: none;
+}
+.md:first-of-type{
+  margin-top: 6px;
+}
+
+.md {
+  margin: 0 auto;
+  width: 95%;
+  margin-bottom: 11px;
+}
+
+.md > span > span > span:first-child {
+  height: 30px;
+  line-height: 30px;
+}
+.new_input{
+  text-align: center;
+}
+.layui-table{
+  margin-top: 10px!important;
+}
+
+
