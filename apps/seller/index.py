@@ -6,7 +6,7 @@ from flask import render_template, request
 
 @seller_log_bp.route('/', endpoint='business_manager')
 def business_manager():
-    return render_template('business_manager.html')
+    return render_template('business/business_manager.html')
 
 
 @seller_log_bp.route('/login', endpoint='login')
@@ -31,4 +31,4 @@ def info_com():
 @seller_log_bp.route("/show_com/", endpoint="show_com", methods=["GET", "POST"])
 def show_comp():
     buss = Business.query.all()
-    return render_template("show_comp.html", buss=buss)
+    return render_template("business/show_comp.html", buss=buss)

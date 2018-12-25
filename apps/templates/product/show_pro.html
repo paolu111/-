@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table style="height:100%; width:100%;text-align: start">
+        <tr class="left_right_tr">
+            <td class="td_left">
+                <table style="height:100%; width:100%">
+                    <tr>
+                        <td>
+                            <div class="left_div">
+  <span class="layui-breadcrumb" lay-separator=">">
+    <a href="">首页</a>
+    <a href="">
+      产品管理</a>
+    <a><cite>
+        工业产品</cite></a>
+  </span>
+                                <select name="" id="" class="new_select">
+                                    <option value="">选择省</option>
+                                    <option value="">北京</option>
+                                    <option value="">上海</option>
+                                    <option value="">重庆</option>
+                                    <option value="">天津</option>
+                                    <option value="">四川</option>
+                                    <option value="">黑龙江</option>
+                                    <option value="">吉林</option>
+                                    <option value="">辽宁</option>
+                                    <option value="">内蒙古</option>
+                                    <option value="">新疆</option>
+                                </select>
+                                <select name="" id="" class="new_select">
+                                    <option value="">选择市</option>
+                                    <option value="">成都</option>
+                                    <option value="">郑州</option>
+                                    <option value="">长春</option>
+                                    <option value="">呼和浩特</option>
+                                    <option value="">乌鲁木齐</option>
+                                    <option value="">拉萨</option>
+                                    <option value="">沈阳</option>
+                                    <option value="">杭州</option>
+                                    <option value="">江苏</option>
+                                    <option value="">南京</option>
+                                </select>
+                                <select name="" id="" class="new_select">
+                                    <option value="">选择企业</option>
+                                    <option value="">广州广达酒厂</option>
+                                    <option value="">江西万顷农场</option>
+                                    <option value="">四川飞训信息技术有限公司</option>
+                                    <option value="">内蒙古毛牦牛牛肉加工厂</option>
+                                    <option value="">江北皮革厂</option>
+                                    <option value="">四川盾台酒厂</option>
+                                    <option value="">河南多汇食品加工厂</option>
+                                    <option value="">山西黑大哥煤矿开采公司</option>
+                                    <option value="">江东集团</option>
+                                    <option value="">北魏集团</option>
+                                    <option value="">西蜀集团</option>
+                                </select>
+                                <select name="" id="" class="new_select">
+                                    <option value="">选择产品</option>
+                                    <option value="">广达酒</option>
+                                    <option value="">万顷红富士</option>
+                                    <option value="">毛毛牦牛牛肉干</option>
+                                    <option value="">江北皮鞋</option>
+                                    <option value="">江北皮包</option>
+                                    <option value="">江北皮夹克</option>
+                                    <option value="">盾台啤酒</option>
+                                    <option value="">多汇火腿肠</option>
+                                    <option value="">黑大哥蜂窝煤</option>
+                                    <option value="">多汇冷鲜肉</option>
+                                </select>
+                                <div style="margin: 25px 5px" style="text-align: center">
+                                    <button type="button" class="btn  btn-reg">确认</button>
+                                </div>
+                                <table style="margin-left: 30px">
+                                    <tr>
+                                        <td style="text-align: center">
+                                            <div>
+                                                <button class="btn  btn-other" style="background: #999">全选
+                                                </button>
+                                            </div>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <div style="margin: 5px 3px">
+                                                <button class="btn  btn-other">导出Excel</button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height:100%; width:100%; background-color: rgba(133, 185, 241, 1) "></td>
+                    </tr>
+                </table>
+            </td>
+            <td class="td_right" style="width: 100%">
+                <table style="height:100%; width:100%">
+                    <tr>
+                        <td style="text-align:center">
+                            <div style="margin-top:-8px;margin-left: 2px">
+                                <table  class="layui-table table_" lay-skin="line">
+                                    <tr>
+                                        <th>选择</th>
+                                        <th>产品名称</th>
+                                        <th>产品类型</th>
+                                        <th>生产厂家</th>
+                                        <th>产品规格</th>
+                                        <th>生产日期</th>
+                                        <th>保质期</th>
+                                        <th>产地</th>
+                                        <th>防伪标识</th>
+                                        <th>操作</th>
+                                        <th></th>
+                                    </tr>
+                                    {% for s in p1 %}
+                                        <tr class="double">
+                                            <td><label><input type="checkbox"
+                                                              name="td_checkbox"><span></span></label></td>
+                                            <td>{{ s.name }}</td>
+                                            <td>{{ s.pro_type }}</td>
+                                            <td>{{ s.business.name }}</td>
+                                            <td>{{ s.size }}</td>
+                                            <td>2018-11-2</td>
+                                            <td>{{ s.size }}</td>
+                                            <td>{{ s.place }}</td>
+                                            <td>{{ s.fake }}</td>
+                                            <td><a href="">详情</a></td>
+                                            <td></td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height:100%; width:100%"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}
+
+{% block exit_js %}
+    <script src="{{ url_for('static', filename='js/layui.all.js') }}"></script>
+    <script>
+        layui.use('laydate', function () {
+            var laydate = layui.laydate;
+            laydate.render({
+                elem: '#more_date'
+                , range: true
+            });
+        })
+    </script>
+{% endblock %}
+
+
