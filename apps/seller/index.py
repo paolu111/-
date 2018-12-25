@@ -7,7 +7,7 @@ from flask import render_template, request
 
 @seller_log_bp.route('/', endpoint='business_manager')
 def business_manager():
-    return render_template('business_manager.html')
+    return render_template('business/business_manager.html')
 
 
 @seller_log_bp.route('/login', endpoint='login')
