@@ -50,4 +50,3 @@ def show_comp():
     if request.method=="GET":
         buss = Business.query.all()
         return render_template("breeding.html", buss=buss)
-
