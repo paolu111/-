@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>种养殖企业</title>
-  <link rel="stylesheet" href="../paolu_static/css/business.css">
-  <link rel="stylesheet" href="../paolu_static/css/common.css">
-<link rel="stylesheet" href="../paolu_static/css/layui.css">
+  <link rel="stylesheet" href="{{ url_for ('static', filename='css/business.css') }}">
+  <link rel="stylesheet" href="{{ url_for ('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/layui.css') }}">
 
 
 
@@ -203,33 +203,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td><label><input type="checkbox"><span></span></label></td>
-          <td>深圳哈哥种养殖企业</td>
-          <td>91522627MA6E4WXBXQ</td>
-          <td>18784536991</td>
-          <td>景德镇高新区1504号</td>
-          <td class="anti-fake">是</td>
-          <td><a href="/emtoflawefm/breedingview.html">查看</a></td>
-        </tr>
-        <tr>
-          <td><label><input type="checkbox"><span></span></label></td>
-          <td>深圳储物资流通中心</td>
-          <td>25632627MA6E4WXBXQ</td>
-          <td>18782465435</td>
-          <td>深圳倪家桥3期3单元3112号</td>
-          <td class="anti-fake-no">是</td>
-          <td><a href="/emtoflawefm/breedingview.html">查看</a></td>
-        </tr>
-        <tr>
-          <td><label><input type="checkbox"><span></span></label></td>
-          <td>天津建筑科技有限公司</td>
-          <td>91440104MA59C3XP25C</td>
-          <td>18782465435</td>
-          <td>天津老字号牌楼附近华年广场1单元9527号</td>
-          <td class="anti-fake-no">否</td>
-          <td><a href="/emtoflawefm/breedingview.html">查看</a></td>
-        </tr>
+        {% for bus in buss %}
+            <tr>
+              <td><label><input type="checkbox"><span></span></label></td>
+              <td>{{ bus.name }}</td>
+              <td>91522627MA6E4WXBXQ</td>
+              <td>{{ bus.tel }}</td>
+              <td>景德镇高新区1504号</td>
+              <td class="anti-fake">是</td>
+              <td><a href="/emtoflawefm/breedingview.html">查看</a></td>
+            </tr>
+        {% endfor %}
         </tbody>
       </table>
       <!--<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">-->
@@ -251,8 +235,8 @@
     </div>
   </div>
 </div>
-<script src="../paolu_static/js/layui.all.js"></script>
-<script src="../paolu_static/js/left.js"></script>
+<script src="{{ url_for ('static', filename='js/layui.all.js') }}"></script>
+<script src="{{ url_for ('static', filename='js/left.js') }}"></script>
 </body>
 </html>
 
