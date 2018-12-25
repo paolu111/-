@@ -14,12 +14,11 @@ def login():
     return render_template('login.html')
 
 
-
-@seller_log_bp.route("/info/", endpoint="info", methods=["GET","POST"])
+@seller_log_bp.route("/info/", endpoint="info", methods=["GET", "POST"])
 def info_com():
-    if request.method=="GET":
+    if request.method == "GET":
         return render_template("info.html")
-    if request.method=="POST":
+    if request.method == "POST":
         data = request.form
         b1 = Business()
         b1.name = data.get("name")
@@ -28,7 +27,8 @@ def info_com():
         db.session.commit()
         return "ok"
 
-@seller_log_bp.route("/show_com/",endpoint="show_com",methods=["GET","POST"])
+
+@seller_log_bp.route("/show_com/", endpoint="show_com", methods=["GET", "POST"])
 def show_comp():
     buss = Business.query.all()
     return render_template("show_comp.html", buss=buss)
