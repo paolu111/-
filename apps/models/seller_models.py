@@ -25,6 +25,9 @@ class Business(BaseModel):
     # 企业邮箱
     email = db.Column(db.String(32))
 
+    def keys(self):
+        return "name", "boss", "tel", "email"
+
 
 # 产品分类表
 class Pro_cate(BaseModel):
