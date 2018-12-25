@@ -10,4 +10,5 @@ class BaseModel(db.Model):
 
     status = db.Column(db.Integer, default=0)
 
+
 from apps.models import seller_models
