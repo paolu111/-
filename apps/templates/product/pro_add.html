@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<form action="" method="post">
-    <input type="text" name="name" placeholder="产品名称">
-    <input type="text" name="category" placeholder="产品分类">
-    <input type="text" name="business" placeholder="产品公司">
-    <input type="submit">
-</form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="post">
+        <input type="text" name="name" placeholder="产品名称">
+        <input type="text" name="category" placeholder="产品分类">
+        <input type="text" name="business" placeholder="产品公司">
+        <input type="submit">
+    </form>
+{% endblock %}
+
