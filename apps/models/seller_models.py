@@ -41,3 +41,5 @@ class Product(BaseModel):
     # 产品企业
     business = db.Column(db.Integer, db.ForeignKey(Business.id))
     busin = db.relationship("Business", backref="product")
+
+
