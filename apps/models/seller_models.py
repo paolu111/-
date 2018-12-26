@@ -27,6 +27,9 @@ class Business(BaseModel):
     # 企业类型
     type = db.Column(db.String(16))
 
+    def keys(self):
+        return "name", "boss", "tel", "email"
+
 
 # 产品分类表
 class Pro_cate(BaseModel):
