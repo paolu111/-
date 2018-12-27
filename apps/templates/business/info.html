@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+{% block head_css %}
+    <link rel="stylesheet" href={{ url_for ('static', filename='css/common.css') }}>
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/layui.css') }}">
+    <style>
+        .content {
+            width: 450px;
+            height: 400px;
+            margin: 0 auto;
+            padding-top: 70px;
+
+        }
+
+        .content .layui-form-label {
+            width: auto;
+        }
+
+        .content .layui-form-item:first-child .layui-form-label {
+
+            color: red;
+        }
+
+        .content .layui-form-item:not(:first-child) .layui-form-label {
+            font-size: 12px;
+        }
+
+        dt:hover {
+            cursor: pointer;
+        }
+
+        form > div:last-child {
+
+            padding-top: 30px;
+            width: 100%;
+
+        }
+
+        input {
+            border-radius: 5px !important;
+        }
+
+        button {
+            outline: none;
+            border: none;
+            border-radius: 20px !important;;
+            width: 100px;
+            height: 28px !important;
+        }
+
+        form > div:last-child button:nth-child(2) {
+            float: right;
+            background-color: #2a82e4;
+            margin-right: 6px;
+        }
+
+        form > div:last-child button:nth-child(1) {
+            margin-left: 20px;
+            background-color: #f34343;
+        }
+
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <form class="layui-form" action="" method="post">
+            <div class="layui-form-item">
+                <label class="layui-form-label">基本资料</label>
+            </div>
+            {% for item in form %}
+                <div class="layui-form-item">
+                    {{ item.label(class="layui-form-label") }}
+                    <div class="layui-input-block">
+                        {{ item }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div>
+                <button class="layui-btn layui-btn-xs">提交保存</button>
+                <button class="layui-btn layui-btn-xs">返回上一页</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+{% block exit_js %}
+    <script src="{{ url_for ('static', filename='js/areaData.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+    <script>
+        var provinces = ChinaCity.getProvince();
+        provinces.forEach(function (province) {
+            var $p = $("<optgroup label='" + province + "'></optgroup>");
+            $("#citys").append($p);
+            var citys = ChinaCity.getCity(province);
+            citys.forEach(function (city) {
+                var $city = $("<option>" + city + "<option>");
+                $p.append($city);
+            });
+        });
+    </script>
+    <script src="{{ url_for ('static', filename='js/layui.all.js') }}"></script>
+    <script>
+        var dts = $("form dt");
+        $("form dd:not(:first)").css("display", "block");
+        for (var i = 0; i < dts.length; i++) {
+
+            var dt = dts[i];
+            $(dt).prepend('<i class="layui-icon" open=false >&#xe623;</i>')
+            console.log(dt);
+            $(dt).attr("open", false);
+            $(dt).click(function (ele) {
+                $dt = $(ele.target);
+
+                $i = $dt.find("i");
+                if ($i.attr("open")) {
+                    $i.html("&#xe625;")
+                    $i.attr("open", false);
+                    $dt.nextUntil("dt").slideDown();
+                } else {
+                    $i.html("&#xe623;")
+                    $dt.nextUntil("dt").slideUp();
+                    $i.attr("open", true);
+
+                }
+            })
+        }
+    </script>
+{% endblock %}
+
+

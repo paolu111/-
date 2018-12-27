@@ -1,8 +1,9 @@
 from apps.forms.company import Business_Form
+from apps.lib.tool_func import get_cate
 from apps.models import db
-from apps.models.seller_models import Business
+from apps.models.seller_models import Business, Cate_Business
 from apps.seller import seller_log_bp
-from flask import render_template, request
+from flask import render_template, request, g
 
 
 @seller_log_bp.route('/', endpoint='business_manager')
@@ -17,10 +18,12 @@ def login():
 
 # 添加企业
 @seller_log_bp.route("/info/", endpoint="info", methods=["GET", "POST"])
+@get_cate
 def info_com():
+    cates = g.bus_cates
     if request.method == "GET":
         form = Business_Form(request.form)
-        return render_template("info.html", form=form, title="企业信息")
+        return render_template("business/info.html",cates=cates, form=form, title="企业信息")
     if request.method == "POST":
         form = Business_Form(request.form)
         if form.validate():
@@ -34,15 +37,18 @@ def info_com():
 
 
 # 查看企业
-@seller_log_bp.route("/show_com/", endpoint="show_com", methods=["GET", "POST"])
-def show_comp():
-    if request.method == "GET":
-        buss = Business.query.all()
-        return render_template("breeding.html", buss=buss)
+@seller_log_bp.route("/show_com/<cate_bus_id>/", endpoint="show_com", methods=["GET"])
+@get_cate
+def show_comp(cate_bus_id):
+    cate_bus_id = int(cate_bus_id)
+    cates = g.bus_cates
+    buss = Business.query.filter_by(type=cate_bus_id).all()
+    return render_template("business/breeding.html", cates=cates, buss=buss)
 
 
 # 删除企业
 @seller_log_bp.route("/del_comp/<comp_id>/", endpoint="del_comp", methods=["GET", "POST"])
+@get_cate
 def del_comp(comp_id):
     comp_id = int(comp_id)
     b1 = Business.query.filter_by(id=comp_id).delete()
@@ -52,9 +58,11 @@ def del_comp(comp_id):
 
 # 更新企业
 @seller_log_bp.route("/update_comp/<comp_id>/", endpoint="update_comp", methods=["GET", "POST"])
+@get_cate
 def update_comp(comp_id):
     comp_id = int(comp_id)
     b1 = Business.query.filter_by(id=comp_id).first()
+    cates = g.bus_cates
     if not b1:
         return "没有该企业"
     if request.method == "POST":
@@ -67,4 +75,4 @@ def update_comp(comp_id):
             return "ok"
     else:
         form = Business_Form(data=dict(b1))
-    return render_template("info.html", form=form)
+    return render_template("business/info.html",cates=cates, form=form)
