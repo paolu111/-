@@ -13,7 +13,7 @@ class SellerModel(BaseModel, UserMixin):
     # 密码
     _password = db.Column('password', db.String(128))
     # 权限 0:普通用户， 1：企业， 2：管理员
-    authority = db.Column(db.Integer)
+    authority = db.Column(db.Integer,default=1)
 
     @property
     def password(self):

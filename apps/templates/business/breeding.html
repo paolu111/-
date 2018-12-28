@@ -196,7 +196,7 @@
                             <td>{{ bus.name }}</td>
                             <td>91522627MA6E4WXBXQ</td>
                             <td>{{ bus.tel }}</td>
-                            <td>景德镇高新区1504号</td>
+                            <td>{{ bus.province }}{{ bus.city }}{{ bus.county }}{{ bus.address }}</td>
                             <td class="anti-fake">是</td>
                             <td><a href="{{ url_for ("seller.update_comp",comp_id=bus.id) }}">更新</a></td>
                             <td><a href="{{ url_for ("seller.del_comp",comp_id=bus.id) }}">删除</a></td>
