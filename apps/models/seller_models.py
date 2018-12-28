@@ -2,6 +2,12 @@ from apps.models import BaseModel
 from apps.models import db
 
 
+# 企业分类
+class Cate_Business(BaseModel):
+    # 分类名
+    name = db.Column(db.String(32))
+
+
 # 企业表
 class Business(BaseModel):
     # 企业名称
@@ -25,10 +31,11 @@ class Business(BaseModel):
     # 企业邮箱
     email = db.Column(db.String(32))
     # 企业类型
-    type = db.Column(db.String(16))
+    type = db.Column(db.Integer, db.ForeignKey(Cate_Business.id))
+    category = db.relationship("Cate_Business", backref="Business")
 
     def keys(self):
-        return "name", "boss", "tel", "email"
+        return "name", "boss", "tel", "email", "type"
 
 
 # 产品分类表

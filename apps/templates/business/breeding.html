@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% block head_css %}
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/business.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/common.css') }}">
+    <link rel="stylesheet" href="{{ url_for ('static', filename='css/layui.css') }}">
+    <style>
+        .layui-table th {
+            height: 48px;
+            text-align: center;
+            background: rgba(210, 207, 207, 1);
+        }
+
+        .layui-table td {
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .layui-table {
+            margin: 13px 0;
+        }
+
+        tbody > tr:nth-child(odd) td {
+            background: #f0f0f0;
+        }
+
+        tbody > tr:nth-child(even) td {
+            background: white;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    {#    顶部导航#}
+    <div class="menu_div">
+        <ul class="layui-nav" lay-filter="">
+            <li class="layui-nav-item">
+                <a href="javascript:;">企业管理</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/business_management/enterprise.html">企业分布图</a></dd>
+                    {% for cate in cates %}
+                        <dd><a href="{{ url_for ("seller.show_com", cate_bus_id=cate.id) }}">{{ cate.name }}</a></dd>
+                    {% endfor %}
+
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">产品管理</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="../../promgt/induspro.html">工业产品</a></dd>
+                    <dd><a href="../../promgt/housepro.html">农产品</a></dd>
+                    <dd><a href="../../promgt/foodpro.html">食品</a></dd>
+                    <dd><a href="../../promgt/cospro.html">化妆品</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">防伪溯源监管</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="../../zfscsupervise/prosts.html">防伪产品统计</a></dd>
+                    <dd><a href="../../zfscsupervise/sdypro.html">假冒伪劣产品统计</a></dd>
+                    <dd><a href="../../zfscsupervise/reltmdtshow.html">实时数据展示</a></dd>
+                    <dd><a href="../../zfscsupervise/reltmdtshow-look.html">实时数据展示查看</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">执法检查</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/examination/planaudit.html">检查计划</a></dd>
+                    <dd><a href="/examination/enforcement.html">移动执法</a></dd>
+                    <dd><a href="/examination/checkresult.html">检查结果</a></dd>
+                    <dd><a href="/examination/expirationnotice.html">证件到期提示</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">企业自查</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="../../etpcompre/comprePlan.html">自查计划</a></dd>
+                    <dd><a href="../../etpcompre/compreInfo.html">自查信息</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">社会监督</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/social_supervision/eventsreport.html">事件举报(假冒伪劣)</a></dd>
+                    <dd><a href="/social_supervision/productreport.html">产品举报(假冒伪劣)</a></dd>
+                    <dd><a href="/social_supervision/complaint.html">投诉处理</a></dd>
+
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">黑名单</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/blacklist/blacklist.html">黑名单管理</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">风险预警</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/risk/risk_1.html">风险事件分布</a></dd>
+                    <dd><a href="/risk/risk_2.html">假冒伪劣事件分布</a></dd>
+                    <dd><a href="/risk/risk_3.html">预警信息发布</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">监管业务</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/supervise/self_inspection.html">自查模板</a></dd>
+                    <dd><a href="/supervise/regulation.html">监管模板</a></dd>
+                    <dd><a href="/supervise/type.html">执法类型</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">用户信息</a>
+                <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                    <dd><a href="/user/info.html">个人信息修改</a></dd>
+                    <dd><a href="/user/pd.html">密码修改</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    {#    左侧导航#}
+    <div class="content layui-row">
+        <div class="left_div layui-col-xs2">
+
+<span class="layui-breadcrumb" lay-separator=">">
+                <a href="">首页</a>
+                <a href="">企业管理</a>
+                <a><cite>种养殖企业</cite></a>
+            </span>
+            <select id="" class="new_input" style="height: 30px">
+                <option value="">企业类别</option>
+                <option value="">种养殖企业</option>
+                <option value="">生产企业</option>
+                <option value="">学校单位食堂</option>
+                <option value="">流通企业</option>
+                <option value="">餐饮企业</option>
+                <option value="">三小企业</option>
+                <option value="">其它企业</option>
+            </select>
+
+            <select id="" class="new_input" style="height: 30px">
+                <option value="">选择省</option>
+                <option value="">北京</option>
+                <option value="">广东</option>
+                <option value="">山东</option>
+                <option value="">江苏</option>
+                <option value="">河南</option>
+                <option value="">河北</option>
+                <option value="">浙江</option>
+                <option value="">陕西</option>
+            </select>
+            <select id="" class="new_input" style="height: 30px">
+                <option value="">选择市</option>
+                <option value="">济南</option>
+                <option value="">南京</option>
+                <option value="">上海</option>
+                <option value="">石家庄</option>
+
+
+            </select>
+            <div style="margin-top:11px">
+                <button type="button" class="btn  btn-reg">确认</button>
+            </div>
+            <div style="margin-top: 44px; ">
+                <button class="btn  btn-other">导出Excel</button>
+            </div>
+
+
+        </div>
+
+        <div class="layui-col-xs10 ">
+            <div>
+                <table class="layui-table " lay-even lay-skin="line">
+                    <colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>企业名称</th>
+                        <th>信用代码</th>
+                        <th>联系方式</th>
+                        <th>注册地址</th>
+                        <th>是否防伪</th>
+                        <th>操作</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for bus in buss %}
+                        <tr>
+                            <td><label><input type="checkbox"><span></span></label></td>
+                            <td>{{ bus.name }}</td>
+                            <td>91522627MA6E4WXBXQ</td>
+                            <td>{{ bus.tel }}</td>
+                            <td>景德镇高新区1504号</td>
+                            <td class="anti-fake">是</td>
+                            <td><a href="{{ url_for ("seller.update_comp",comp_id=bus.id) }}">更新</a></td>
+                            <td><a href="{{ url_for ("seller.del_comp",comp_id=bus.id) }}">删除</a></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <!--<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">-->
+                <!--<ul class="layui-tab-title">-->
+                <!--<li class="layui-this">网站设置</li>-->
+                <!--<li>用户管理</li>-->
+                <!--<li>权限分配</li>-->
+                <!--<li>商品管理</li>-->
+                <!--<li>订单管理</li>-->
+                <!--</ul>-->
+                <!--<div class="layui-tab-content" style="height: 100px;">-->
+                <!--<div class="layui-tab-item layui-show">内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）</div>-->
+                <!--<div class="layui-tab-item">内容2</div>-->
+                <!--<div class="layui-tab-item">内容3</div>-->
+                <!--<div class="layui-tab-item">内容4</div>-->
+                <!--<div class="layui-tab-item">内容5</div>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block exit_js %}
+    <script src="{{ url_for ('static', filename='js/layui.all.js') }}"></script>
+    <script src="{{ url_for ('static', filename='js/left.js') }}"></script>
+{% endblock %}
+
+
+
