@@ -1,8 +1,7 @@
+from apps import login_manager
 from apps.models import BaseModel, db
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, LoginManager
-
-loginmanager = LoginManager()
+from flask_login import UserMixin
 
 
 class SellerModel(BaseModel, UserMixin):
@@ -13,7 +12,7 @@ class SellerModel(BaseModel, UserMixin):
     # 密码
     _password = db.Column('password', db.String(128))
     # 权限 0:普通用户， 1：企业， 2：管理员
-    authority = db.Column(db.Integer,default=1)
+    authority = db.Column(db.Integer, default=1)
 
     @property
     def password(self):
@@ -32,6 +31,6 @@ class SellerModel(BaseModel, UserMixin):
                 setattr(self, k, v)
 
 
-@loginmanager.user_loader
+@login_manager.user_loader
 def load_user(userid: str):
-    return SellerModel.query.get(int(userid))
+    return SellerModel.query.filter_by(id=int(userid)).first()

@@ -1,8 +1,10 @@
 from apps.models import BaseModel
 from apps.models import db
 
-
 # 企业分类
+from apps.models.user import SellerModel
+
+
 class Cate_Business(BaseModel):
     # 分类名
     name = db.Column(db.String(32))
@@ -33,9 +35,12 @@ class Business(BaseModel):
     # 企业类型
     type = db.Column(db.Integer, db.ForeignKey(Cate_Business.id))
     category = db.relationship("Cate_Business", backref="Business")
+    # 用户
+    admin = db.Column(db.Integer, db.ForeignKey(SellerModel.id))
+    user = db.relationship("SellerModel", backref="business")
 
     def keys(self):
-        return "name", "boss", "tel", "email", "type"
+        return "name", "boss", "tel", "email", "type", "province", "city", "county", "address"
 
 
 # 产品分类表

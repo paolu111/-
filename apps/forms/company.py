@@ -17,6 +17,18 @@ class Business_Form(Form):
                         render_kw={"class": "layui-input"}
                         )
     type = SelectField(label="公司类型", coerce=int, render_kw={"class": "layui-input"})
+    province = StringField(label="省", validators=[validators.DataRequired(message="必填项")],
+                        render_kw={"class": "layui-input"}
+                        )
+    city = StringField(label="市", validators=[validators.DataRequired(message="必填项")],
+                        render_kw={"class": "layui-input"}
+                        )
+    county = StringField(label="县", validators=[validators.DataRequired(message="必填项")],
+                        render_kw={"class": "layui-input"}
+                        )
+    address = StringField(label="详细地址", validators=[validators.DataRequired(message="必填项")],
+                        render_kw={"class": "layui-input"}
+                        )
 
     def __init__(self, *args, **kwargs):
         cates = Cate_Business.query.all()

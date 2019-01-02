@@ -19,3 +19,4 @@ class BaseModel(db.Model):
 
 
 from apps.models import seller_models
+from apps.models import user
