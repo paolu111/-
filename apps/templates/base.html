@@ -1,186 +1,191 @@
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>xxxxxx</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/layui.css') }}">
+    <title>xxxxxx</title>
+    {% block head_css %}
+        <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/common.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/layui.css') }}">
+        <style>
+        .lefts_div {
+            float: right;
+            width: 100%;
+            background-color: rgba(133, 185, 241, 1);
+            height: 100%;
+            color: black;
+            text-align: center;
+            margin-top: 0px;
+            display: inline-block;
+            margin-left: -13px;
+        }
 
-  <script type="text/javascript" src="{{ url_for('static', filename='js/baidu.js') }}"></script>
+        .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
+            color: black !important;
+        }
 
-  <style>
-    .lefts_div {
-      float: right;
-      width: 100%;
-      background-color: rgba(133, 185, 241, 1);
-      height: 100%;
-      color: black;
-      text-align: center;
-      margin-top: 0px;
-      display: inline-block;
-      margin-left: -13px;
-    }
+        .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
+            color: black !important;
+        }
 
-    .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
-      color: black !important;
-    }
+        .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
+            color: rgb(0, 0, 0) !important;
+        }
 
-    .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
-      color: black !important;
-    }
+        .lefts_div .layui-breadcrumb span {
+            color: rgba(42, 130, 228, 1) !important;
+            font-size: 15px;
+        }
 
-    .lefts_div .layui-breadcrumb a, .lefts_div .layui-breadcrumb a cite {
-      color: rgb(0, 0, 0) !important;
-    }
+        .new_select {
+            height: 30px;
+            border-radius: 3px;
+            border: none;
+            width: 210px;
+        }
 
-    .lefts_div .layui-breadcrumb span {
-      color: rgba(42, 130, 228, 1) !important;
-      font-size: 15px;
-    }
-    .new_select {
-      height: 30px;
-      border-radius: 3px;
-      border: none;
-      width: 210px;
-    }
+        .lefts_div .new_input, .lefts_div .new_select {
+            width: 95%;
+            margin: 5px 0px;
+        }
 
-    .lefts_div .new_input, .lefts_div .new_select {
-      width: 95%;
-      margin: 5px 0px;
-    }
-    .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3 {
-      width: 21% !important;
-      padding-right: 0px !important;
-    }
-    .table-div, tr > td {
-      border: 1px solid rgba(210, 207, 207, 1);
-    }
+        .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3 {
+            width: 21% !important;
+            padding-right: 0px !important;
+        }
 
-    .col-xs-3 {
+        .table-div, tr > td {
+            border: 1px solid rgba(210, 207, 207, 1);
+        }
 
-      float: left;
-    }
+        .col-xs-3 {
 
-    .col-xs-9 {
-      position: relative;
-      overflow: hidden;
-    }
+            float: left;
+        }
 
-    #mapTitle {
-      position: absolute;
-      top: 50px;
-      left: 45%;
-      background: red;
-      color: white;
-      padding: 5px;
+        .col-xs-9 {
+            position: relative;
+            overflow: hidden;
+        }
 
-      z-index: 100;
-    }
-  </style>
+        #mapTitle {
+            position: absolute;
+            top: 50px;
+            left: 45%;
+            background: red;
+            color: white;
+            padding: 5px;
+
+            z-index: 100;
+        }
+    </style>
+    {% endblock %}
+    {% block head_js %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/baidu.js') }}"></script>
+    {% endblock %}
 </head>
 <body>
 <header>
-<img class="logo_img" src="https://img.xiaopiu.com/userImages/img2664166613f66c8.png">
-全国产品防伪溯源验证公共平台大数据监管中心(跑路组)
+    <img class="logo_img" src="https://img.xiaopiu.com/userImages/img2664166613f66c8.png">
+    全国产品防伪溯源验证公共平台大数据监管中心(跑路组)
 </header>
 
 <div class="menu_div">
-  <ul class="layui-nav" lay-filter="">
-    <li class="layui-nav-item">
-      <a href="javascript:;">企业管理</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">企业分布图</a></dd>
-        <dd><a href="">种养殖企业</a></dd>
-        <dd><a href="">生产企业</a></dd>
-        <dd><a href="">学校单位食堂</a></dd>
-        <dd><a href="">流通企业</a></dd>
-        <dd><a href="">餐饮企业</a></dd>
-        <dd><a href="">三小企业</a></dd>
-        <dd><a href="">其它企业</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">产品管理</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">工业产品</a></dd>
-        <dd><a href="">农产品</a></dd>
-        <dd><a href="">食品</a></dd>
-        <dd><a href="">化妆品</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">防伪溯源监管</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">防伪产品统计</a></dd>
-        <dd><a href="">假冒伪劣产品统计</a></dd>
-        <dd><a href="">实时数据展示</a></dd>
-        <dd><a href="">实时数据展示查看</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">执法检查</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">检查计划</a></dd>
-        <dd><a href="">移动执法</a></dd>
-        <dd><a href="">检查结果</a></dd>
-        <dd><a href="">证件到期提示</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">企业自查</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">自查计划</a></dd>
-        <dd><a href="">自查信息</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">社会监督</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">事件举报(假冒伪劣)</a></dd>
-        <dd><a href="">产品举报(假冒伪劣)</a></dd>
-        <dd><a href="">投诉处理</a></dd>
+    <ul class="layui-nav" lay-filter="">
+        <li class="layui-nav-item">
+            <a href="javascript:;">企业管理</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="/business_management/enterprise.html">企业分布图</a></dd>
+                <dd><a href="{{ url_for ("seller.info") }}">企业添加</a></dd>
+                {% for cate in cates %}
+                    <dd><a href="{{ url_for ("seller.show_com", cate_bus_id=cate.id) }}">{{ cate.name }}</a></dd>
+                {% endfor %}
 
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">黑名单</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">黑名单管理</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">风险预警</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">风险事件分布</a></dd>
-        <dd><a href="">假冒伪劣事件分布</a></dd>
-        <dd><a href="">预警信息发布</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">监管业务</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">自查模板</a></dd>
-        <dd><a href="">监管模板</a></dd>
-        <dd><a href="">执法类型</a></dd>
-      </dl>
-    </li>
-    <li class="layui-nav-item">
-      <a href="javascript:;">用户信息</a>
-      <dl class="layui-nav-child"> <!-- 二级菜单 -->
-        <dd><a href="">个人信息修改</a></dd>
-        <dd><a href="">密码修改</a></dd>
-      </dl>
-    </li>
-  </ul>
+
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">产品管理</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">工业产品</a></dd>
+                <dd><a href="">农产品</a></dd>
+                <dd><a href="">食品</a></dd>
+                <dd><a href="">化妆品</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">防伪溯源监管</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">防伪产品统计</a></dd>
+                <dd><a href="">假冒伪劣产品统计</a></dd>
+                <dd><a href="">实时数据展示</a></dd>
+                <dd><a href="">实时数据展示查看</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">执法检查</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">检查计划</a></dd>
+                <dd><a href="">移动执法</a></dd>
+                <dd><a href="">检查结果</a></dd>
+                <dd><a href="">证件到期提示</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">企业自查</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">自查计划</a></dd>
+                <dd><a href="">自查信息</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">社会监督</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">事件举报(假冒伪劣)</a></dd>
+                <dd><a href="">产品举报(假冒伪劣)</a></dd>
+                <dd><a href="">投诉处理</a></dd>
+
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">黑名单</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">黑名单管理</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">风险预警</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">风险事件分布</a></dd>
+                <dd><a href="">假冒伪劣事件分布</a></dd>
+                <dd><a href="">预警信息发布</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">监管业务</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">自查模板</a></dd>
+                <dd><a href="">监管模板</a></dd>
+                <dd><a href="">执法类型</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">用户信息</a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a href="">个人信息修改</a></dd>
+                <dd><a href="">密码修改</a></dd>
+            </dl>
+        </li>
+    </ul>
 </div>
 {% block content %}
-    模板
+
 {% endblock %}
 
 {% block exit_js %}
+
 {% endblock %}
 </body>
 </html>
